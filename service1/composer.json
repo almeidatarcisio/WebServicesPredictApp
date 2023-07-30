@@ -1,10 +1,12 @@
 {
-  "name": "tarcisio/webservicesboletimapp-php",
-  "description": "Web Services para o app BoletimApp",
-  "require": {
-    "php": ">=7.2.0",
-    "monolog/monolog": "^2.0",
-    "guzzlehttp/guzzle": "^7.0"
-    // outras dependências do seu projeto
-  }
+    "name": "tarcisioalmeida/service1",
+    "description": "Web Service para o app BoletimApp",
+    "type": "project",
+    "authors": [
+        {
+            "name": "almeidatarcisio",
+            "email": "tarcisiocomp@gmail.com"
+        }
+    ],
+    "require": {}
 }
