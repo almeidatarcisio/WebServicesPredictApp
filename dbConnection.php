@@ -3,10 +3,10 @@ $ambiente = true;
 
 if ($ambiente) { // Ambiente de Produção
 	
-	$HostName = "y5svr1t2r5xudqeq.cbetxkdyhwsb.us-east-1.rds.amazonaws.com";
-	$HostUser = "tgq6tv81thy58lbx";
-	$HostPass = "el4ehp6cvkkac0el";
-	$DatabaseName = "bledi7rw3if6j9p3";
+	$HostName = "wb39lt71kvkgdmw0.cbetxkdyhwsb.us-east-1.rds.amazonaws.com";
+	$HostUser = "tm4ab7xzn205n7l1";
+	$HostPass = "p0ythsi7ylyy2pah";
+	$DatabaseName = "bcxc6b0aepzciccy";
 	
 } else { // Ambiente de Desenvolvimento
 
