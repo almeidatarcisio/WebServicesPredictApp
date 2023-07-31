@@ -8,5 +8,7 @@
             "email": "tarcisiocomp@gmail.com"
         }
     ],
-    "require": {}
+    "require": {
+	dbConnection.php
+     }
 }
