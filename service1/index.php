@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	include 'dbConnection.php';
 	
 	$conn = new mysqli($HostName, $HostUser,
-					$HostPass, $DatabaseName);
+					$HostPass, $DatabaseName, $Port);
 		
 	mysqli_set_charset($conn, "utf8");
 	
