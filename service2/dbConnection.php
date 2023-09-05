@@ -7,7 +7,7 @@ if ($ambiente) { // Ambiente de Produção
 	$HostUser = "root";
 	$HostPass = "CPiVVuGD2hS2BVMyWkER";
 	$DatabaseName = "railway";
-	$Port = "7272";
+	$Port = 7272;
 	
 } else { // Ambiente de Desenvolvimento
 
