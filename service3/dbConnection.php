@@ -3,7 +3,7 @@ $ambiente = true;
 
 if ($ambiente) { // Ambiente de Produção
 	
-	$HostName = "webservicespredictapp-production.up.railway.app";
+	$HostName = "autorack.proxy.rlwy.net";
 	$HostUser = "root";
 	$HostPass = "fasnFlzeUGlilYdXnknBqrdXdrMIVrLe";
 	$DatabaseName = "railway";
