@@ -3,7 +3,7 @@ $ambiente = true;
 
 if ($ambiente) { // Ambiente de Produção
 	
-	$HostName = "web-services-production-8c5e.up.railway.app";
+	$HostName = "webservicespredictapp-production.up.railway.app";
 	$HostUser = "root";
 	$HostPass = "fasnFlzeUGlilYdXnknBqrdXdrMIVrLe";
 	$DatabaseName = "railway";
