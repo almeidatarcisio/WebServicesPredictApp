@@ -3,11 +3,11 @@ $ambiente = true;
 
 if ($ambiente) { // Ambiente de Produção
 	
-	$HostName = "containers-us-west-126.railway.app";
+	$HostName = "web-services-production-8c5e.up.railway.app";
 	$HostUser = "root";
-	$HostPass = "CPiVVuGD2hS2BVMyWkER";
+	$HostPass = "fasnFlzeUGlilYdXnknBqrdXdrMIVrLe";
 	$DatabaseName = "railway";
-	$Port = 7272;
+	$Port = 31021;
 	
 } else { // Ambiente de Desenvolvimento
 
