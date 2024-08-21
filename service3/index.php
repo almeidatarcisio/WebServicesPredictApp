@@ -21,23 +21,31 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	$login = "'".$_POST['login']."'";
 	$semestre = "'".$_POST['semestre']."'";
 	
-	$sql = "SELECT aluno.nome AS aluno,
-				   disciplina.nome AS disciplina, 
-				   turma.nome AS turma, 
-				   IF(notasdosemestre.a1 IS NULL, '-', notasdosemestre.a1) AS a1, 
-				   IF(notasdosemestre.a2 IS NULL, '-', notasdosemestre.a2) AS a2, 
-				   IF(notasdosemestre.sub IS NULL, '-', notasdosemestre.sub) AS sub, 
-				   IF(notasdosemestre.a3 IS NULL, '-', notasdosemestre.a3) AS a3, 
-				   IF(notasdosemestre.faltas1 IS NULL, '-', notasdosemestre.faltas1) AS faltasA1, 
-				   IF(notasdosemestre.faltas2 IS NULL, '-', notasdosemestre.faltas2) AS faltasA2 
-			FROM usuario, aluno, semestre, disciplina, turma, notasdosemestre 
-			WHERE usuario.login = $login
-			AND semestre.descricao = $semestre
-			AND notasdosemestre.fk_id_usuario = usuario.id
-			AND notasdosemestre.fk_id_aluno = aluno.id
-			AND notasdosemestre.fk_id_semestre = semestre.id
-			AND notasdosemestre.fk_id_disciplina = disciplina.id
-			AND notasdosemestre.fk_id_turma = turma.id";
+	$sql = "SELECT 
+				a.nome AS aluno,
+				d.nome AS disciplina, 
+				t.nome AS turma, 
+				COALESCE(n.a1, '-') AS a1, 
+				COALESCE(n.a2, '-') AS a2, 
+				COALESCE(n.sub, '-') AS sub, 
+				COALESCE(n.a3, '-') AS a3, 
+				COALESCE(n.faltas1, '-') AS faltasA1, 
+				COALESCE(n.faltas2, '-') AS faltasA2 
+			FROM 
+				usuario u
+			JOIN 
+				notasdosemestre n ON n.fk_id_usuario = u.id
+			JOIN 
+				aluno a ON n.fk_id_aluno = a.id
+			JOIN 
+				semestre s ON n.fk_id_semestre = s.id
+			JOIN 
+				disciplina d ON n.fk_id_disciplina = d.id
+			JOIN 
+				turma t ON n.fk_id_turma = t.id
+			WHERE 
+				u.login = $login
+				AND s.descricao = $semestre;";
 	
 	$result = $conn->query($sql);
 	
