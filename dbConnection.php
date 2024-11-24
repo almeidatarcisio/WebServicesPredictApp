@@ -3,11 +3,11 @@ $ambiente = true;
 
 if ($ambiente) { // Ambiente de Produção
 	
-	$HostName = "junction.proxy.rlwy.net";
+	$HostName = "autorack.proxy.rlwy.net";
 	$HostUser = "root";
-	$HostPass = "QEqOFaiMzYjbImEYwKisoJPYgadZFwmK";
+	$HostPass = "NjuKbzVutoYjXqlWGWcmvevGslMEqJXI";
 	$DatabaseName = "railway";
-	$Port = 23503;
+	$Port = 30574;
 	
 } else { // Ambiente de Desenvolvimento
 
