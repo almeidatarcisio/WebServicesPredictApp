@@ -3,7 +3,13 @@
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: POST, GET, OPTIONS');
 header('Access-Control-Allow-Headers: Content-Type, Authorization');
-header('Content-Type: application/json charset=utf-8');
+header('Content-Type: application/json; charset=utf-8');
+
+// Lidar com a solicitação OPTIONS
+if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
+    http_response_code(200);
+    exit();
+}
 
 $response = array();
 $response["erro"] = true;
@@ -12,18 +18,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	
 	include 'dbConnection.php';
 	
-	$conn = new mysqli($HostName, $HostUser,
-					$HostPass, $DatabaseName, $Port);
-		
+	$conn = new mysqli($HostName, $HostUser, $HostPass, $DatabaseName, $Port);
 	mysqli_set_charset($conn, "utf8");
 	
-	if ($conn->connect_error) { 
-	
-		die("Não conectou....: " . $conn->connect_error);
+	if ($conn->connect_error) {
+		die("Não conectou: " . $conn->connect_error);
 	}
 	
-	$login = "'".$_POST['login']."'";
-	$semestre = "'".$_POST['semestre']."'";
+	$login = $conn->real_escape_string($_POST['login']);
+	$semestre = $conn->real_escape_string($_POST['semestre']);
 	
 	$sql = "SELECT 
 				a.nome AS aluno,
@@ -48,30 +51,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			JOIN 
 				turma t ON n.fk_id_turma = t.id
 			WHERE 
-				u.login = $login
-				AND s.descricao = $semestre;";
+				u.login = '$login'
+				AND s.descricao = '$semestre';";
 	
 	$result = $conn->query($sql);
 	
-//	print_r($result);
-	
 	if ($result->num_rows > 0) {
-
 		$response["erro"] = false;
 		$response["registros"] = $result->num_rows;
-
 		while($row = mysqli_fetch_object($result)){
-				$response["data"][] = $row;
+			$response["data"][] = $row;
 		}
-		
 	} else {
-
 		$response["mensagem"] = "Você não se matriculou no semestre selecionado!";
-		
 	}
 	
 	$conn->close();
-	
 }
+
 echo json_encode($response);
 ?>
